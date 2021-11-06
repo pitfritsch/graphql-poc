@@ -2,6 +2,7 @@ const { gql } = require('apollo-server')
 
 const userSchema = gql `
   type User {
+    id: ID
     nome: String!
     ativo: Boolean!
     email: String
@@ -9,7 +10,7 @@ const userSchema = gql `
 
   type Query {
     users: [User!]!
-    primeiroUser: User!
+    user(id: ID): User
   }
 
 `
