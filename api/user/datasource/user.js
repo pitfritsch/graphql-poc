@@ -31,6 +31,23 @@ class UsersApi extends RESTDataSource {
       role: findedRole[0]
     }
   }
+
+  async attUser(user) {
+    const findedRole = (await this.get(`roles?type=${user.role}`))[0]
+    const changedUser = await this.put(`users/${user.id}`, {
+      ...user,
+      role: findedRole.id
+    })
+    return {
+      ...changedUser,
+      role: findedRole
+    }
+  }
+
+  async deleteUser(id) {
+    await this.delete(`users/${id}`)
+    return id
+  }
 }
 
 module.exports = UsersApi

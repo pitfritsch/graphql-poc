@@ -10,6 +10,12 @@ const userResolvers = {
   Mutation: {
     addUser: (root, user, { dataSources }) => {
       return dataSources.usersApi.addUser(user)
+    },
+    attUser: (root, user, { dataSources }) => {
+      return dataSources.usersApi.attUser(user)
+    },
+    deleteUser: (root, { id }, { dataSources }) => {
+      return dataSources.usersApi.deleteUser(id)
     }
   }
 };
