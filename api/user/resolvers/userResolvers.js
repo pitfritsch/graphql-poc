@@ -6,6 +6,11 @@ const userResolvers = {
     user: (root, { id }, { dataSources }) => {
       return dataSources.usersApi.getUser(id)
     }
+  },
+  Mutation: {
+    addUser: (root, user, { dataSources }) => {
+      return dataSources.usersApi.addUser(user)
+    }
   }
 };
 

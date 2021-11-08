@@ -19,6 +19,14 @@ class UsersApi extends RESTDataSource {
     user.role = await this.get(`roles/${user.role}`)
     return user
   }
+
+  async addUser(user) {
+    await this.post('users', {
+      ...user,
+      role:  (await this.get(`roles?type=${user.role}`))[0].id
+    })
+    return { ...user }
+  }
 }
 
 module.exports = UsersApi
