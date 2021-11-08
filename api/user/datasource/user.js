@@ -15,7 +15,7 @@ class UsersApi extends RESTDataSource {
   }
 
   async getUser(id) {
-    const user = this.get(`users/${id}`)
+    const user = await this.get(`users/${id}`)
     user.role = await this.get(`roles/${user.role}`)
     return user
   }
