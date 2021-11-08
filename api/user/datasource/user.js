@@ -21,11 +21,15 @@ class UsersApi extends RESTDataSource {
   }
 
   async addUser(user) {
-    await this.post('users', {
+    const findedRole = await this.get(`roles?type=${user.role}`)
+    const addedUser = await this.post('users', {
       ...user,
-      role:  (await this.get(`roles?type=${user.role}`))[0].id
+      role:  findedRole[0].id
     })
-    return { ...user }
+    return {
+      ...addedUser,
+      role: findedRole[0]
+    }
   }
 }
 
